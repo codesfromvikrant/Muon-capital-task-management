@@ -4,14 +4,8 @@ export const TodoContext = createContext();
 
 const TodoContextProvider = ({ children }) => {
   const [todoList, setTodoList] = useState([]);
+  const [mobileNav, setMobileNav] = useState(true);
 
-  // save todoList in localStorage whene todoList change
-  useEffect(() => {
-    localStorage.setItem("todoList", JSON.stringify(todoList));
-    console.log("todoList", todoList);
-  }, [todoList]);
-
-  // get todoList from localStorage whene page load
   useEffect(() => {
     const todoList = JSON.parse(localStorage.getItem("todoList"));
     if (todoList) {
@@ -20,7 +14,9 @@ const TodoContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <TodoContext.Provider value={{ todoList, setTodoList }}>
+    <TodoContext.Provider
+      value={{ todoList, setTodoList, mobileNav, setMobileNav }}
+    >
       {children}
     </TodoContext.Provider>
   );

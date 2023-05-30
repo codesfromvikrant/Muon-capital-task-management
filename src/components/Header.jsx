@@ -1,9 +1,23 @@
-import React from "react";
+import React, { useContext } from "react";
 import { BiWalletAlt } from "react-icons/bi";
+import { HiMenu } from "react-icons/hi";
+import { TodoContext } from "../context/contextApi";
 
 const Header = () => {
+  const { mobileNav, setMobileNav } = useContext(TodoContext);
   return (
-    <div className="py-3 px-8 border-b-2 border-secondary flex justify-between items-center">
+    <div className="py-3 md:px-8 px-4 border-b-2 border-secondary flex justify-between items-center">
+      {!mobileNav && (
+        <div
+          onClick={() => {
+            setMobileNav((prev) => !prev);
+          }}
+          className=""
+        >
+          {" "}
+          <HiMenu className="text-white text-2xl p-1 bg-secondary rounded" />
+        </div>
+      )}
       <div className="text-white border-b-2 border-blue-500 w-max py-2">
         Section
       </div>
